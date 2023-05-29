@@ -7,7 +7,7 @@
 Below a basic guide on how to install the tests,run, architecture folder structure and useful resources.</p>
 
 <h2>Rest Assured</h2>
-<p align="justified">REST-assured API testing tool is a very popular tool in the API automation testing world working in the Java domain.</br>
+<p align="justified">REST-assured is a very popular tool in the API automation testing world working in the Java domain.</br>
 
 <b>Pros:</b>
 
