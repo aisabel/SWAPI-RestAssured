@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-<p align="justified">This is sample test for SWAPI api using rest Assured with Java, and using different assertions validations. </br>This repository is to make request to SWAPI API. All the data is accessible through HTTP web API. https://swapi.dev</br></br>
+<p align="justified">This is sample test for SWAPI api using rest Assured with Java, and using different assertions validations, and the use of POJOS in java native. </br>This repository is to make request to SWAPI API. All the data is accessible through HTTP web API. https://swapi.dev</br></br>
 
 Below a basic guide on how to install the tests,run, architecture folder structure and useful resources.</p>
 
