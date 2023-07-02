@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: JavaCIwithMaven
 
 on:
   push:
@@ -27,7 +27,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+        
+    #Dependencies
+    - name: Install dependencies
       run: mvn test -B -e package --file pom.xml
+      
+    #Run test
+    - name: Run tests
+      run: mvn test -B -e --file */test/java/*
 
    
