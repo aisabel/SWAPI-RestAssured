@@ -8,6 +8,7 @@
 
 name: JavaCIwithMaven
 
+#Run build within each push of code to master branch
 on:
   push:
     branches: [ "master" ]
@@ -23,7 +24,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: adopt
+        distribution: 'temurin'
         cache: maven
         
     #Dependencies
@@ -35,6 +36,6 @@ jobs:
       run: mvn -q -B test -Dgroups="EndToEndTests"
       
     - name: Run restAssured swapi
-      run: mvn -q -B test -Dgroups="restAssuredSwapi"
+      run: mvn -q -B test/java -Dgroups="restAssuredSwapi"
 
    
