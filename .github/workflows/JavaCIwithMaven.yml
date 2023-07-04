@@ -42,7 +42,7 @@ jobs:
       
         #Run test
     - name: Run E2E Tests
-      run: mvn -q -B test -Dgroups="EndToEndTests"
+      run: mvn -q -B test -Dgroups="Test"
           
     #Verify and run tests
     - name: Verify and run
