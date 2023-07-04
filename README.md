@@ -1,3 +1,4 @@
+[![JavaCIwithMaven](https://github.com/aisabel/SWAPI-RestAssured/actions/workflows/JavaCIwithMaven.yml/badge.svg)](https://github.com/aisabel/SWAPI-RestAssured/actions/workflows/JavaCIwithMaven.yml)
 
 <h2>Description</h2>
 <p align="justified">This is sample test for SWAPI api using rest Assured with Java, and using different assertions validations, and the use of POJOS in java native. This repository is to make request to SWAPI API. All the data is accessible through HTTP web API. https://swapi.dev</br></p>
