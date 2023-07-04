@@ -27,18 +27,23 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Run the Maven verify phase
+    - name: Update snapshots phase
       run: mvn --batch-mode --update-snapshots verify
       
     #Dependencies
     - name: Install dependencies
       run: mvn test -B -e package --file pom.xml
       
-    #Run test
-    - name: Run E2E Tests
-      run: mvn -q -B test -Dgroups="EndToEndTests"
+    #Verify and run tests
+    - name: Verify and run
+      run: mvn test verify -Dcucumber.options="--tags @Test"
       
-    - name: Run restAssured swapi
-      run: mvn -q -B test -Dgroups="restAssuredSwapi"
+    #Run test
+    #- name: Run E2E Tests
+    #  run: mvn -q -B test -Dgroups="EndToEndTests"
+     
+     
+    #- name: Run restAssured swapi
+    #  run: mvn -q -B test -Dgroups="restAssuredSwapi"
 
    
