@@ -10,8 +10,8 @@ name: JavaCIwithMaven
 
 #Run build within each push of code to master branch
 on:
-  push:
-    branches: [ "master" ]  
+  [push]    
+  #branches: [ "master" ]  
 
 jobs:
   build:
