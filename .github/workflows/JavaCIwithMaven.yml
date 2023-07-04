@@ -29,9 +29,13 @@ jobs:
    # - name: Update snapshots phase
    #   run: mvn --batch-mode --update-snapshots verify
       
+    # Make directory to upload the test results
+    - name: Make Directory for results
+      run: mkdir -p testResults
       
     - name: Install dependencies
       run: mvn verify -B --file pom.xml
+      
     #Dependencies
     #- name: Install dependencies
     #  run: mvn test -B -e package --file pom.xml
@@ -41,10 +45,19 @@ jobs:
       run: mvn test verify -Dcucumber.options="--tags @Test"
       
     #Run test
-    #- name: Run E2E Tests
-    #  run: mvn -q -B test -Dgroups="EndToEndTests"
-     
-     
+    - name: Run E2E Tests
+      run: mvn -q -B test -Dgroups="EndToEndTests"
+      
+    #Create and output results
+    #The reports land in actions tab > summary > Artifacts
+    - name: Output the run Details
+      uses: actions/upload-artifact@v2
+      with:
+          name: RunReports
+          path: testResults
+      
+
+ 
     #- name: Run restAssured swapi
     #  run: mvn -q -B test -Dgroups="restAssuredSwapi"
 
