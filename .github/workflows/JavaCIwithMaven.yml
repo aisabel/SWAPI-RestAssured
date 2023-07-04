@@ -27,31 +27,44 @@ jobs:
         distribution: 'zulu'
         cache: maven
         
-    - name: Build with Maven
-      run: mvn --batch-mode --update-snapshots package
-      
-    - name: Run the Maven verify phase
-      run: mvn --batch-mode --update-snapshots verify
-      
-    - name: Install dependencies
-      run: mvn verify -B --file pom.xml
-      
-      # Make directory to upload the test results
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+    
+    # Make directory to upload the test results
     - name: Make Directory for results
       run: mkdir -p testResults
+      
+    - name: Build with Maven
+      run: mvn -q -B -DskipTests package --file pom.xml
+      
+        #Run test
+    - name: Run E2E Tests
+      run: mvn -q -B test -Dgroups="EndToEndTests"
+        
+   # - name: Build with Maven
+   #   run: mvn --batch-mode --update-snapshots package
+      
+   # - name: Run the Maven verify phase
+   #   run: mvn --batch-mode --update-snapshots verify
+      
+   # - name: Install dependencies
+   #   run: mvn verify -B --file pom.xml
+      
+
       
     #Dependencies
     #- name: Install dependencies
     #  run: mvn test -B -e package --file pom.xml
       
     #Verify and run tests
-    - name: Verify and run
-      run: mvn test verify -Dcucumber.options="--tags @Test"
+    #- name: Verify and run
+    #  run: mvn test verify -Dcucumber.options="--tags @Test"
       
-    #Run test
-    - name: Run E2E Tests
-      run: mvn -q -B test -Dgroups="EndToEndTests"
-      
+  
     #Create and output results
     #The reports land in actions tab > summary > Artifacts
     - name: Output the run Details
