@@ -9,8 +9,9 @@
 name: JavaCIwithMaven
 
 #Run build within each push of code to master branch
-on: [push]
-    #branches: [ "master" ]
+on:
+  push:
+    branches: [ "master" ]  
 
 jobs:
   build:
@@ -26,15 +27,18 @@ jobs:
         distribution: 'zulu'
         cache: maven
         
-   # - name: Update snapshots phase
-   #   run: mvn --batch-mode --update-snapshots verify
+    - name: Build with Maven
+      run: mvn --batch-mode --update-snapshots package
       
-    # Make directory to upload the test results
-    - name: Make Directory for results
-      run: mkdir -p testResults
+    - name: Run the Maven verify phase
+      run: mvn --batch-mode --update-snapshots verify
       
     - name: Install dependencies
       run: mvn verify -B --file pom.xml
+      
+      # Make directory to upload the test results
+    - name: Make Directory for results
+      run: mkdir -p testResults
       
     #Dependencies
     #- name: Install dependencies
