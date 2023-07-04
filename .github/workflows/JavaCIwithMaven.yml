@@ -41,6 +41,9 @@ jobs:
       run: mvn verify -B -e --file pom.xml
       #run: mvn -q -B -DskipTests package --file pom.xml
       
+    - name: Run mvn test
+      run: mvn test
+      
         #Run test group
     - name: Run E2E Tests
       run: mvn -q -B test -Dgroups="Test"
