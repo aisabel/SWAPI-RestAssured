@@ -9,9 +9,8 @@
 name: JavaCIwithMaven
 
 #Run build within each push of code to master branch
-on:
-  push:
-    branches: [ "master" ]
+on: [push]
+    #branches: [ "master" ]
 
 jobs:
   build:
@@ -24,15 +23,18 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '20'
-        distribution: 'temurin'
+        distribution: 'zulu'
         cache: maven
         
    # - name: Update snapshots phase
    #   run: mvn --batch-mode --update-snapshots verify
       
-    #Dependencies
+      
     - name: Install dependencies
-      run: mvn test -B -e package --file pom.xml
+      run: mvn verify -B --file pom.xml
+    #Dependencies
+    #- name: Install dependencies
+    #  run: mvn test -B -e package --file pom.xml
       
     #Verify and run tests
     - name: Verify and run
