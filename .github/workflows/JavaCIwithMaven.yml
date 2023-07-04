@@ -37,12 +37,16 @@ jobs:
     - name: Make Directory for results
       run: mkdir -p testResults
       
+    - name: MVN install
+      run: mvn install
+      
+     
+    - name: Run mvn test
+      run: mvn test
+      
     - name: Build with Maven
       run: mvn verify -B -e --file pom.xml
       #run: mvn -q -B -DskipTests package --file pom.xml
-      
-    - name: Run mvn test
-      run: mvn test
       
         #Run test group
     - name: Run E2E Tests
