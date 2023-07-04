@@ -38,13 +38,14 @@ jobs:
       run: mkdir -p testResults
       
     - name: Build with Maven
-      run: mvn -q -B -DskipTests package --file pom.xml
+      run: mvn verify -B -e --file pom.xml
+      #run: mvn -q -B -DskipTests package --file pom.xml
       
-        #Run test
+        #Run test group
     - name: Run E2E Tests
       run: mvn -q -B test -Dgroups="Test"
           
-    #Verify and run tests
+    #Verify and run tests tag
     - name: Verify and run
       run: mvn test verify -Dcucumber.options="--tags @Test"
         
@@ -67,11 +68,11 @@ jobs:
   
     #Create and output results
     #The reports land in actions tab > summary > Artifacts
-    - name: Output the run Details
-      uses: actions/upload-artifact@v2
-      with:
-          name: RunReports
-          path: testResults
+    #- name: Output the run Details
+     # uses: actions/upload-artifact@v2
+     # with:
+     #     name: RunReports
+      #    path: testResults
       
 
  
